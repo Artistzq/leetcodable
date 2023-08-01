@@ -1,6 +1,7 @@
 package com.kerbalogy.leetcode.base;
 
 import com.kerbalogy.leetcode.Main;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.net.URL;
@@ -12,6 +13,7 @@ import java.util.List;
  * @date 2023/7/20 20:03
  * @description
  */
+@Slf4j
 public class LeetCodeBoot {
     public static void run() {
         List<Class<? extends AbstractLeetcodable>> classes = findClassesWithRunAnnotation();
@@ -19,7 +21,22 @@ public class LeetCodeBoot {
             if (shouldExecute(clazz)) {
                 try {
                     AbstractLeetcodable<?> instance = clazz.getDeclaredConstructor().newInstance();
+
+                    // 初始化
+                    Run runAnnotation = clazz.getAnnotation(Run.class);
+
+                    if (runAnnotation.everPassed()) {
+                        System.out.println("这道题目曾经做过");
+                    }
+                    if (runAnnotation.checkSolution()) {
+                        System.out.println("看了答案才会做");
+                    }
+
+                    instance.title = runAnnotation.title();
+                    instance.code = runAnnotation.code();
                     instance.run(); // 调用func方法
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -75,6 +92,7 @@ public class LeetCodeBoot {
             } else {
                 return true;
             }
+
         }
         return false; // 默认情况下，如果类没有标记@Run注解，则执行func方法
     }

@@ -7,19 +7,11 @@ import com.kerbalogy.leetcode.base.Run;
  * @date 2023/7/20 20:30
  * @description
  */
-
 public class RawSapce <T> {
 
     public T data;
 
     public RawSapce (T data) {
         this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return "RawSapce{" +
-                "data=" + data +
-                '}';
     }
 }

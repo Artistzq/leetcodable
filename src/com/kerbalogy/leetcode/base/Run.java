@@ -15,4 +15,14 @@ public @interface Run {
 
     boolean hold() default false;
 
+    boolean everPassed() default false;
+
+    boolean checkSolution() default false;
+
+    String comment() default "";
+
+    int code() default 0;
+
+    String title() default "";
+
 }
