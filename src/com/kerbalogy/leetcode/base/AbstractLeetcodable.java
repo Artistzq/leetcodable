@@ -1,6 +1,7 @@
 package com.kerbalogy.leetcode.base;
 
 import com.dxy.library.json.jackson.JacksonUtil;
+import com.kerbalogy.leetcode.util.ShowUtil;
 
 /**
  * @author yaozongqing@outlook.com
@@ -25,7 +26,7 @@ public abstract class AbstractLeetcodable <T> implements Leetcodable<T>{
 
         T result = this.prepareDataAndRun();
 
-        System.out.println(JacksonUtil.to(result));
+        ShowUtil.show(result);
 
         System.out.println();
     }

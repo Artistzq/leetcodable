@@ -13,5 +13,11 @@ public class TreeUtil {
         return null;
     }
 
-
+    public static void inorder(TreeNode node) {
+        if (node != null) {
+            inorder(node.left);
+            System.out.print(node.val + " ");
+            inorder(node.right);
+        }
+    }
 }

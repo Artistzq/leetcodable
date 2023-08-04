@@ -6,11 +6,11 @@ package com.kerbalogy.leetcode.ext;
  * @description
  */
 public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
     TreeNode() {}
-    TreeNode(int val) { this.val = val; }
+    public TreeNode(int val) { this.val = val; }
     TreeNode(int val, TreeNode left, TreeNode right) {
         this.val = val;
         this.left = left;
