@@ -15,6 +15,7 @@ import java.util.Map;
  * @description
  */
 @Run(
+        passed = true,
         code = 146,
         title = "LRU缓存",
         comment = "不知道怎么O(1)复杂度"
