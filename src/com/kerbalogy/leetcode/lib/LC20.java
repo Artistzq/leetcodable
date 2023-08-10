@@ -12,6 +12,7 @@ import java.util.Deque;
  * @description
  */
 @Run(
+        passed = true,
         code = 20,
         title = "有效的括号"
 )
