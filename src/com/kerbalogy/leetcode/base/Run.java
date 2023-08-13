@@ -25,4 +25,8 @@ public @interface Run {
 
     String title() default "";
 
+    boolean notice() default false;
+
+    int star() default 1;
+
 }

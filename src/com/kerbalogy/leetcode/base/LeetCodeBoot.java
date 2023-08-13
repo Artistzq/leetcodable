@@ -18,13 +18,19 @@ public class LeetCodeBoot {
     public static void run() {
         List<Class<? extends AbstractLeetcodable>> classes = findClassesWithRunAnnotation();
         for (Class<? extends AbstractLeetcodable> clazz : classes) {
+            Run runAnnotation = clazz.getAnnotation(Run.class);
+
+            // 先打印信息，执行放最后
+            boolean runCode = false;
+
             if (shouldExecute(clazz)) {
                 try {
                     AbstractLeetcodable<?> instance = clazz.getDeclaredConstructor().newInstance();
 
-                    // 初始化
-                    Run runAnnotation = clazz.getAnnotation(Run.class);
 
+                    if (runAnnotation.notice()) {
+                        System.out.println("这一题被标记了提示，不执行");
+                    }
                     if (runAnnotation.everPassed()) {
                         System.out.println("这道题目曾经做过");
                     }
@@ -34,7 +40,9 @@ public class LeetCodeBoot {
 
                     instance.title = runAnnotation.title();
                     instance.code = runAnnotation.code();
-                    instance.run(); // 调用func方法
+
+                    if (! runAnnotation.notice())
+                        instance.run(); // 调用func方法
 
 
                 } catch (Exception e) {

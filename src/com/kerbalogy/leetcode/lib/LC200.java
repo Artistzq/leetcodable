@@ -12,7 +12,8 @@ import com.kerbalogy.leetcode.base.Run;
         code = 200,
         title = "岛屿数量",
         checkSolution = true,
-        comment = "难"
+        comment = "难",
+        notice = true
 )
 public class LC200 extends AbstractLeetcodable<Integer> {
     @Override

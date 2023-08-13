@@ -3,7 +3,9 @@ package com.kerbalogy.leetcode.util;
 import com.kerbalogy.leetcode.ext.ListNode;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author yaozongqing@outlook.com
@@ -28,14 +30,23 @@ public class ListNodeUtil {
     }
 
     public static String print(ListNode list) {
+        // 考虑环
         ListNode p = list;
         List<String> elems = new ArrayList<>();
+        Set<ListNode> set = new HashSet<>();
 
+        int count = 0;
         while (p != null) {
+            if (set.contains(p)) {
+                elems.add("循环，从" + count + " " + p.val + "开始");
+                break;
+            }
+            set.add(p);
             elems.add(String.valueOf(p.val));
             p = p.next;
+            count ++;
         }
-        return "[" + String.join(",", elems) + "]";
+        return "ListNode (size=" + count + ") [" + String.join(",", elems) + "]";
     }
 
     public static ListNode tail(ListNode list) {
