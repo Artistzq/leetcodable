@@ -11,11 +11,12 @@ import com.kerbalogy.leetcode.util.ListNodeUtil;
  * @description
  */
 @Run(
+        passed = true,
         code = 142,
         title = "环形链表 II",
         everPassed = true,
-        checkSolution = true,
-        comment = "抄答案"
+        checkSolution = true
+//        comment = "抄答案"
 )
 public class LC142 extends AbstractLeetcodable<ListNode> {
     @Override
@@ -25,8 +26,7 @@ public class LC142 extends AbstractLeetcodable<ListNode> {
     }
 
     public ListNode detectCycle(ListNode head) {
-
-        if (head == null) {
+        if (head == null || head.next == null) {
             return null;
         }
 
@@ -38,14 +38,18 @@ public class LC142 extends AbstractLeetcodable<ListNode> {
             slow = slow.next;
 
             if (slow == fast) {
-                ListNode p = head;
-                while (p != slow) {
-                    p = p.next;
+                fast = head;
+                while (fast != slow) {
+                    fast = fast.next;
                     slow = slow.next;
                 }
-                return p;
+
+                return fast;
             }
         }
+
         return null;
+
+
     }
 }

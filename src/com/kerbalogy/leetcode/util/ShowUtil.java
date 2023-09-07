@@ -19,7 +19,7 @@ public class ShowUtil {
         if (data.getClass() == TreeNode.class) {
             TreeUtil.inorder((TreeNode) data);
         } else if (data.getClass() == ListNode.class) {
-            ListNodeUtil.print((ListNode) data);
+            System.out.println(data);
         } else {
             System.out.println(JacksonUtil.to(data));
         }

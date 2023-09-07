@@ -26,27 +26,26 @@ public class LC3 extends AbstractLeetcodable<Integer> {
     }
 
     public int lengthOfLongestSubstring(String s) {
-        if (s.length() == 0) {
+        if (s == null || s.equals("")) {
             return 0;
         }
 
         Set<Character> set = new HashSet<>();
         int left = 0, right = 0;
-        int length = 1;
+        int maxLen = 0;
+        // 窗口：[left, right)内的元素
         while (right < s.length()) {
-            // 如果右边界重复了，则左边界右移
-            while (set.contains(s.charAt(right))) {
+
+            while ( set.contains(s.charAt(right))) {
                 set.remove(s.charAt(left));
                 left ++;
             }
-            // 确保加入right后，不会有重复，再加入
+
             set.add(s.charAt(right));
             right ++;
 
-            length = Math.max(length, set.size());
-
+            maxLen = Math.max(maxLen, set.size());
         }
-
-        return length;
+        return maxLen;
     }
 }

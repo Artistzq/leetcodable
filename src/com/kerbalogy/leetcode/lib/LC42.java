@@ -1,6 +1,8 @@
 package com.kerbalogy.leetcode.lib;
 
+import com.kerbalogy.leetcode.base.AbstractLeetcodable;
 import com.kerbalogy.leetcode.base.Leetcodable;
+import com.kerbalogy.leetcode.base.Run;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -10,16 +12,46 @@ import java.util.Deque;
  * @date 2023/7/16 13:33
  * @description 接雨水
  */
-public class LC42 implements Leetcodable<Integer> {
+@Run(
+        code = 42,
+        title = "接雨水"
+)
+public class LC42 extends AbstractLeetcodable<Integer> {
 
     @Override
     public Integer prepareDataAndRun() {
         int[] height = new int[] {0,1,0,2,1,0,1,3,2,1,2,1};
+        height = new int[] {4,2,0,3,2,5};
         return trap(height);
     }
 
     public int trap(int[] height) {
-        return shuangzhizhen(height);
+        return dandiaozhan_0906(height);
+    }
+
+
+    public int dandiaozhan_0906(int[] height) {
+
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        int ans = 0;
+        for (int i = 0; i < height.length; i++) {
+
+            while (stack.size() > 1 && height[stack.peek()] < height[i]) {
+                int rightIndex = i;
+                int right = height[rightIndex];
+                int midIndex = stack.pop();
+                int mid = height[midIndex];
+                int left = height[stack.peek()];
+
+                ans += Math.max((Math.min(left, right) - mid), 0) * (rightIndex - stack.peek() - 1);
+            }
+
+            stack.push(i);
+
+        }
+        return ans;
+
     }
 
     public int dandiaozhan(int[] height) {
