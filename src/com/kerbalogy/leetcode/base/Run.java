@@ -19,11 +19,11 @@ public @interface Run {
 
     boolean checkSolution() default false;
 
-    String comment() default "";
-
     int code() default 0;
 
     String title() default "";
+
+    String comment() default "";
 
     boolean notice() default false;
 

@@ -16,6 +16,6 @@ public class ListNode {
 
     @Override
     public String toString() {
-        return "ListNode: " + ListNodeUtil.print(this);
+        return ListNodeUtil.print(this);
     }
 }
